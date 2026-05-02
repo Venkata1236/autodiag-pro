@@ -1,25 +1,25 @@
-fastapi==0.115.12
-uvicorn[standard]==0.34.2
+fastapi
+uvicorn[standard]
 
-pydantic==2.11.4
-pydantic-settings==2.9.1
+pydantic
+pydantic-settings
 
-sqlalchemy==2.0.40
-asyncpg==0.30.0
-psycopg2-binary==2.9.10
+sqlalchemy
+asyncpg
+psycopg2-binary
 
-langchain==0.3.25
-langgraph==0.4.3
+langchain
+langgraph
 
-openai==1.78.0
+openai
 
-chromadb==1.0.8
+chromadb
 
-python-dotenv==1.1.0
+python-dotenv
 
-loguru==0.7.3
+loguru
 
-httpx==0.28.1
+httpx
 
-pytest==8.3.5
-pytest-asyncio==0.26.0
+pytest
+pytest-asyncio
