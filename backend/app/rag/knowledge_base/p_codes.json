@@ -1,0 +1,123 @@
+[
+    {
+        "code": "P0300",
+        "category": "Powertrain",
+        "system": "Engine",
+        "title": "Random/Multiple Cylinder Misfire Detected",
+        "description": "The engine control module detected multiple cylinder misfires occurring randomly.",
+        "possible_causes": [
+            "Faulty spark plugs",
+            "Bad ignition coils",
+            "Vacuum leak",
+            "Faulty oxygen sensor",
+            "Fuel injector issue"
+        ],
+        "symptoms": [
+            "Rough idle",
+            "Engine hesitation",
+            "Poor acceleration",
+            "Check engine light"
+        ],
+        "diagnostic_steps": [
+            "Inspect spark plugs",
+            "Check ignition coils",
+            "Inspect oxygen sensor readings"
+        ],
+        "fix_sequence": [
+            "Replace faulty spark plugs",
+            "Replace oxygen sensor if faulty",
+            "Clear codes and retest"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "Spark Plug Set",
+                "price_range_inr": "800-2500"
+            }
+        ],
+        "severity": 3,
+        "related_codes": [
+            "P0420",
+            "P0301",
+            "P0302"
+        ]
+    },
+    {
+        "code": "P0420",
+        "category": "Powertrain",
+        "system": "Emissions",
+        "title": "Catalyst System Efficiency Below Threshold",
+        "description": "Catalytic converter efficiency is below expected threshold.",
+        "possible_causes": [
+            "Failing catalytic converter",
+            "Faulty oxygen sensor",
+            "Rich fuel mixture",
+            "Exhaust leak"
+        ],
+        "symptoms": [
+            "Check engine light",
+            "Poor fuel economy",
+            "Sulfur smell",
+            "Reduced performance"
+        ],
+        "diagnostic_steps": [
+            "Inspect catalytic converter",
+            "Check upstream oxygen sensor",
+            "Inspect exhaust system"
+        ],
+        "fix_sequence": [
+            "Replace oxygen sensor",
+            "Inspect catalytic converter",
+            "Repair exhaust leaks"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "Upstream Oxygen Sensor",
+                "price_range_inr": "2500-5000"
+            }
+        ],
+        "severity": 3,
+        "related_codes": [
+            "P0300",
+            "P0171"
+        ]
+    },
+    {
+        "code": "P0171",
+        "category": "Powertrain",
+        "system": "Fuel System",
+        "title": "System Too Lean",
+        "description": "The air-fuel mixture is too lean on bank 1.",
+        "possible_causes": [
+            "Vacuum leak",
+            "Dirty mass airflow sensor",
+            "Weak fuel pump",
+            "Faulty oxygen sensor"
+        ],
+        "symptoms": [
+            "Rough idle",
+            "Engine hesitation",
+            "Poor acceleration"
+        ],
+        "diagnostic_steps": [
+            "Inspect vacuum leaks",
+            "Check fuel pressure",
+            "Inspect MAF sensor"
+        ],
+        "fix_sequence": [
+            "Repair vacuum leaks",
+            "Clean MAF sensor",
+            "Replace faulty oxygen sensor"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "Mass Airflow Sensor",
+                "price_range_inr": "3000-7000"
+            }
+        ],
+        "severity": 2,
+        "related_codes": [
+            "P0300",
+            "P0420"
+        ]
+    }
+]
