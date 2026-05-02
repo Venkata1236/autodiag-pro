@@ -42,6 +42,348 @@
         ]
     },
     {
+        "code": "P0301",
+        "category": "Powertrain",
+        "system": "Engine",
+        "title": "Cylinder 1 Misfire Detected",
+        "description": "Cylinder 1 is experiencing repeated combustion misfires.",
+        "possible_causes": [
+            "Faulty spark plug",
+            "Weak ignition coil",
+            "Fuel injector issue",
+            "Low compression"
+        ],
+        "symptoms": [
+            "Rough idle",
+            "Engine vibration",
+            "Reduced power"
+        ],
+        "diagnostic_steps": [
+            "Inspect spark plug condition",
+            "Swap ignition coil",
+            "Perform compression test"
+        ],
+        "fix_sequence": [
+            "Replace spark plug",
+            "Replace ignition coil if faulty",
+            "Test fuel injector"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "Ignition Coil",
+                "price_range_inr": "1800-4500"
+            }
+        ],
+        "severity": 3,
+        "related_codes": [
+            "P0300",
+            "P0302"
+        ]
+    },
+    {
+        "code": "P0302",
+        "category": "Powertrain",
+        "system": "Engine",
+        "title": "Cylinder 2 Misfire Detected",
+        "description": "Cylinder 2 is misfiring due to ignition or fuel delivery problems.",
+        "possible_causes": [
+            "Faulty spark plug",
+            "Bad injector",
+            "Vacuum leak",
+            "Low compression"
+        ],
+        "symptoms": [
+            "Rough idle",
+            "Check engine light",
+            "Engine hesitation"
+        ],
+        "diagnostic_steps": [
+            "Inspect injector pulse",
+            "Check spark output",
+            "Inspect intake leaks"
+        ],
+        "fix_sequence": [
+            "Replace spark plug",
+            "Repair vacuum leaks",
+            "Replace injector if needed"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "Fuel Injector",
+                "price_range_inr": "2500-6500"
+            }
+        ],
+        "severity": 3,
+        "related_codes": [
+            "P0300",
+            "P0171"
+        ]
+    },
+    {
+        "code": "P0303",
+        "category": "Powertrain",
+        "system": "Engine",
+        "title": "Cylinder 3 Misfire Detected",
+        "description": "Repeated misfire detected in cylinder 3.",
+        "possible_causes": [
+            "Weak ignition coil",
+            "Dirty injector",
+            "Carbon buildup"
+        ],
+        "symptoms": [
+            "Poor acceleration",
+            "Engine shaking",
+            "Check engine light"
+        ],
+        "diagnostic_steps": [
+            "Inspect ignition coil",
+            "Clean fuel injector",
+            "Inspect spark plug"
+        ],
+        "fix_sequence": [
+            "Replace ignition coil",
+            "Clean injector",
+            "Replace spark plug"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "Spark Plug",
+                "price_range_inr": "200-600"
+            }
+        ],
+        "severity": 3,
+        "related_codes": [
+            "P0300"
+        ]
+    },
+    {
+        "code": "P0304",
+        "category": "Powertrain",
+        "system": "Engine",
+        "title": "Cylinder 4 Misfire Detected",
+        "description": "Cylinder 4 combustion irregularity detected.",
+        "possible_causes": [
+            "Faulty ignition coil",
+            "Injector malfunction",
+            "Air intake leak"
+        ],
+        "symptoms": [
+            "Jerking during acceleration",
+            "Rough idle",
+            "Reduced fuel economy"
+        ],
+        "diagnostic_steps": [
+            "Inspect intake manifold",
+            "Check ignition system",
+            "Test fuel injector"
+        ],
+        "fix_sequence": [
+            "Replace faulty coil",
+            "Repair intake leak",
+            "Replace injector if needed"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "Ignition Coil",
+                "price_range_inr": "1800-4000"
+            }
+        ],
+        "severity": 3,
+        "related_codes": [
+            "P0300",
+            "P0171"
+        ]
+    },
+    {
+        "code": "P0130",
+        "category": "Powertrain",
+        "system": "Emissions",
+        "title": "O2 Sensor Circuit Malfunction Bank 1 Sensor 1",
+        "description": "The upstream oxygen sensor is not responding correctly.",
+        "possible_causes": [
+            "Faulty oxygen sensor",
+            "Damaged wiring",
+            "Rich fuel mixture"
+        ],
+        "symptoms": [
+            "Poor fuel economy",
+            "Check engine light",
+            "Rough idle"
+        ],
+        "diagnostic_steps": [
+            "Inspect O2 sensor voltage",
+            "Check sensor wiring",
+            "Inspect exhaust leaks"
+        ],
+        "fix_sequence": [
+            "Replace oxygen sensor",
+            "Repair wiring",
+            "Clear codes and retest"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "Upstream O2 Sensor",
+                "price_range_inr": "2500-5500"
+            }
+        ],
+        "severity": 2,
+        "related_codes": [
+            "P0420",
+            "P0171"
+        ]
+    },
+    {
+        "code": "P0131",
+        "category": "Powertrain",
+        "system": "Emissions",
+        "title": "O2 Sensor Low Voltage Bank 1 Sensor 1",
+        "description": "Low voltage detected from upstream oxygen sensor.",
+        "possible_causes": [
+            "Lean fuel mixture",
+            "Vacuum leak",
+            "Faulty oxygen sensor"
+        ],
+        "symptoms": [
+            "Poor acceleration",
+            "Check engine light",
+            "Engine hesitation"
+        ],
+        "diagnostic_steps": [
+            "Inspect intake leaks",
+            "Test oxygen sensor voltage",
+            "Inspect fuel trims"
+        ],
+        "fix_sequence": [
+            "Repair vacuum leaks",
+            "Replace oxygen sensor"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "Vacuum Hose Kit",
+                "price_range_inr": "500-1500"
+            }
+        ],
+        "severity": 2,
+        "related_codes": [
+            "P0171",
+            "P0300"
+        ]
+    },
+    {
+        "code": "P0132",
+        "category": "Powertrain",
+        "system": "Emissions",
+        "title": "O2 Sensor High Voltage Bank 1 Sensor 1",
+        "description": "The oxygen sensor is reporting consistently rich conditions.",
+        "possible_causes": [
+            "Rich fuel mixture",
+            "Faulty oxygen sensor",
+            "Leaking fuel injector"
+        ],
+        "symptoms": [
+            "Black smoke",
+            "Poor fuel economy",
+            "Engine hesitation"
+        ],
+        "diagnostic_steps": [
+            "Inspect injector leakage",
+            "Check oxygen sensor response",
+            "Inspect fuel pressure"
+        ],
+        "fix_sequence": [
+            "Replace oxygen sensor",
+            "Repair leaking injector"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "Fuel Injector",
+                "price_range_inr": "2500-6000"
+            }
+        ],
+        "severity": 2,
+        "related_codes": [
+            "P0420",
+            "P0172"
+        ]
+    },
+    {
+        "code": "P0171",
+        "category": "Powertrain",
+        "system": "Fuel System",
+        "title": "System Too Lean",
+        "description": "The air-fuel mixture is too lean on bank 1.",
+        "possible_causes": [
+            "Vacuum leak",
+            "Dirty mass airflow sensor",
+            "Weak fuel pump",
+            "Faulty oxygen sensor"
+        ],
+        "symptoms": [
+            "Rough idle",
+            "Engine hesitation",
+            "Poor acceleration"
+        ],
+        "diagnostic_steps": [
+            "Inspect vacuum leaks",
+            "Check fuel pressure",
+            "Inspect MAF sensor"
+        ],
+        "fix_sequence": [
+            "Repair vacuum leaks",
+            "Clean MAF sensor",
+            "Replace faulty oxygen sensor"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "Mass Airflow Sensor",
+                "price_range_inr": "3000-7000"
+            }
+        ],
+        "severity": 2,
+        "related_codes": [
+            "P0300",
+            "P0420"
+        ]
+    },
+    {
+        "code": "P0172",
+        "category": "Powertrain",
+        "system": "Fuel System",
+        "title": "System Too Rich",
+        "description": "Fuel mixture contains excessive fuel relative to air.",
+        "possible_causes": [
+            "Leaking injector",
+            "Faulty oxygen sensor",
+            "Dirty air filter"
+        ],
+        "symptoms": [
+            "Black smoke",
+            "Poor mileage",
+            "Fuel smell"
+        ],
+        "diagnostic_steps": [
+            "Inspect injectors",
+            "Inspect air filter",
+            "Check O2 sensor"
+        ],
+        "fix_sequence": [
+            "Replace oxygen sensor",
+            "Replace dirty air filter",
+            "Repair injector leaks"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "Air Filter",
+                "price_range_inr": "400-1200"
+            }
+        ],
+        "severity": 2,
+        "related_codes": [
+            "P0420",
+            "P0132"
+        ]
+    },
+    {
         "code": "P0420",
         "category": "Powertrain",
         "system": "Emissions",
@@ -82,42 +424,143 @@
         ]
     },
     {
-        "code": "P0171",
+        "code": "P0430",
         "category": "Powertrain",
-        "system": "Fuel System",
-        "title": "System Too Lean",
-        "description": "The air-fuel mixture is too lean on bank 1.",
+        "system": "Emissions",
+        "title": "Catalyst System Efficiency Below Threshold Bank 2",
+        "description": "Catalytic converter performance on bank 2 is below acceptable threshold.",
         "possible_causes": [
-            "Vacuum leak",
-            "Dirty mass airflow sensor",
-            "Weak fuel pump",
-            "Faulty oxygen sensor"
+            "Catalytic converter failure",
+            "Faulty oxygen sensor",
+            "Rich fuel mixture"
         ],
         "symptoms": [
-            "Rough idle",
-            "Engine hesitation",
-            "Poor acceleration"
+            "Reduced engine performance",
+            "Poor mileage",
+            "Check engine light"
         ],
         "diagnostic_steps": [
-            "Inspect vacuum leaks",
-            "Check fuel pressure",
-            "Inspect MAF sensor"
+            "Inspect catalytic converter",
+            "Inspect oxygen sensor data"
         ],
         "fix_sequence": [
-            "Repair vacuum leaks",
-            "Clean MAF sensor",
-            "Replace faulty oxygen sensor"
+            "Replace oxygen sensor",
+            "Inspect catalytic converter"
         ],
         "parts_typically_needed": [
             {
-                "part": "Mass Airflow Sensor",
-                "price_range_inr": "3000-7000"
+                "part": "Catalytic Converter",
+                "price_range_inr": "12000-40000"
             }
         ],
-        "severity": 2,
+        "severity": 3,
         "related_codes": [
-            "P0300",
             "P0420"
+        ]
+    },
+    {
+        "code": "P0440",
+        "category": "Powertrain",
+        "system": "EVAP",
+        "title": "Evaporative Emission Control System Malfunction",
+        "description": "General malfunction in evaporative emissions system.",
+        "possible_causes": [
+            "Loose gas cap",
+            "EVAP leak",
+            "Faulty purge valve"
+        ],
+        "symptoms": [
+            "Check engine light",
+            "Fuel smell"
+        ],
+        "diagnostic_steps": [
+            "Inspect gas cap",
+            "Smoke test EVAP system"
+        ],
+        "fix_sequence": [
+            "Tighten or replace gas cap",
+            "Repair EVAP leaks"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "Gas Cap",
+                "price_range_inr": "300-900"
+            }
+        ],
+        "severity": 1,
+        "related_codes": [
+            "P0442",
+            "P0455"
+        ]
+    },
+    {
+        "code": "P0442",
+        "category": "Powertrain",
+        "system": "EVAP",
+        "title": "Small EVAP Leak Detected",
+        "description": "Small leak detected in evaporative emissions system.",
+        "possible_causes": [
+            "Loose fuel cap",
+            "Small hose leak",
+            "Cracked EVAP line"
+        ],
+        "symptoms": [
+            "Check engine light",
+            "Fuel odor"
+        ],
+        "diagnostic_steps": [
+            "Inspect fuel cap",
+            "Inspect EVAP lines"
+        ],
+        "fix_sequence": [
+            "Replace damaged EVAP hose",
+            "Replace gas cap"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "EVAP Hose",
+                "price_range_inr": "500-2000"
+            }
+        ],
+        "severity": 1,
+        "related_codes": [
+            "P0440",
+            "P0455"
+        ]
+    },
+    {
+        "code": "P0455",
+        "category": "Powertrain",
+        "system": "EVAP",
+        "title": "Large EVAP Leak Detected",
+        "description": "Large leak detected in evaporative emissions system.",
+        "possible_causes": [
+            "Disconnected EVAP hose",
+            "Faulty purge valve",
+            "Broken fuel cap"
+        ],
+        "symptoms": [
+            "Fuel smell",
+            "Check engine light"
+        ],
+        "diagnostic_steps": [
+            "Perform smoke leak test",
+            "Inspect purge valve"
+        ],
+        "fix_sequence": [
+            "Reconnect EVAP hose",
+            "Replace purge valve"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "Purge Valve",
+                "price_range_inr": "1800-4500"
+            }
+        ],
+        "severity": 1,
+        "related_codes": [
+            "P0440",
+            "P0442"
         ]
     }
 ]
