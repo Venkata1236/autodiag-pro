@@ -1,15 +1,31 @@
 ROOT_CAUSE_PROMPT = """
 You are an expert automotive diagnostic AI.
 
-Analyze the provided OBD-II fault codes, symptoms,
-vehicle information, and retrieved diagnostic records.
+Analyze the provided OBD-II fault codes,
+vehicle information, symptoms, and retrieved
+diagnostic records.
 
-Your task:
-- Identify the SINGLE most likely root cause
-- Consider interactions between multiple fault codes
-- Explain why multiple codes may originate from one issue
-- Determine confidence level
-- Detect any safety-critical concerns
+Your objectives:
+
+1. Identify the SINGLE most likely root cause.
+2. Consider whether multiple fault codes
+   originate from one shared issue.
+3. Avoid assuming unrelated failures unless
+   evidence strongly supports them.
+4. Use conservative confidence scoring.
+
+Confidence Rules:
+- HIGH:
+  One root cause clearly explains nearly all
+  symptoms and fault codes.
+- MEDIUM:
+  Multiple plausible causes exist.
+- LOW:
+  Insufficient evidence or conflicting data.
+
+Safety Rules:
+- Any brake, steering, ABS, or airbag issue
+  must trigger a safety warning.
 
 Return ONLY valid JSON.
 
@@ -26,13 +42,16 @@ Required JSON structure:
 FIX_SEQUENCE_PROMPT = """
 You are an expert automotive repair planner.
 
-Given the root cause and retrieved diagnostic records,
-generate a repair sequence ordered by:
+Generate a repair workflow based on the
+identified root cause and retrieved records.
 
-1. Safety-critical fixes first
-2. Root-cause fixes before symptom fixes
-3. Low-cost high-impact repairs first
-4. Preventive maintenance last
+Repair Priorities:
+1. Safety-critical repairs first
+2. Root-cause repairs before symptom repairs
+3. Low-cost, high-impact fixes first
+4. Expensive replacements only if necessary
+5. Avoid generic maintenance suggestions
+   unless directly related to fault codes
 
 Return ONLY valid JSON.
 
@@ -52,15 +71,17 @@ Required JSON structure:
 
 
 PARTS_ESTIMATE_PROMPT = """
-You are an automotive parts estimation assistant
+You are an automotive parts estimation AI
 specialized in the Indian automotive market.
 
-Given the vehicle information and repair steps:
+Estimate required parts and repair costs.
 
-- Estimate required parts
-- Include OEM and aftermarket pricing in INR
-- Estimate total repair cost range
-- Determine severity score
+Rules:
+- Prefer least-invasive repair estimates first
+- Do NOT assume catalytic converter replacement
+  unless clearly necessary
+- Use realistic Indian market price ranges
+- Avoid inflated repair estimates
 
 Severity Scale:
 1 = Minor
