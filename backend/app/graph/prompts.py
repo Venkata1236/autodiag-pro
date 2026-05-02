@@ -15,11 +15,14 @@ Your objectives:
 4. Use conservative confidence scoring.
 
 Confidence Rules:
-- HIGH:
-  One root cause clearly explains nearly all
-  symptoms and fault codes.
-- MEDIUM:
-  Multiple plausible causes exist.
+HIGH:
+Use ONLY when diagnostic evidence strongly
+supports one dominant root cause with minimal ambiguity.
+
+MEDIUM:
+Use when two or more plausible causes exist,
+even if one appears more likely.
+
 - LOW:
   Insufficient evidence or conflicting data.
 
