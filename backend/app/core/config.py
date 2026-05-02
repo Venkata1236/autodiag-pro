@@ -1,10 +1,9 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    OPENAI_API_KEY: str
 
-    DATABASE_URL: str
+    OPENAI_API_KEY: str
 
     CHROMA_DB_PATH: str = "chroma_db/"
 
@@ -14,10 +13,10 @@ class Settings(BaseSettings):
 
     ENVIRONMENT: str = "development"
 
-    model_config = SettingsConfigDict(
-        env_file=".env",
-        extra="ignore"
-    )
+    DATABASE_URL: str
+
+    class Config:
+        env_file = ".env"
 
 
 settings = Settings()
