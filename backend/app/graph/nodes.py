@@ -11,6 +11,9 @@ from app.graph.prompts import (
 )
 from app.graph.state import DiagnosisState
 from app.rag.retriever import OBDRetriever
+from app.core.constants import SAFETY_CRITICAL_SYSTEMS
+from backend.app.graph import state
+
 
 
 client = OpenAI(
@@ -19,6 +22,31 @@ client = OpenAI(
 
 retriever = OBDRetriever()
 
+def detect_safety_issue(
+    retrieved_records: list[dict]
+) -> str | None:
+    """
+    Detect safety-critical diagnostic conditions.
+    """
+
+    for record in retrieved_records:
+        metadata = record.get("metadata", {})
+
+        system = metadata.get(
+            "system",
+            ""
+        ).upper()
+
+        if system in [
+            critical.upper()
+            for critical in SAFETY_CRITICAL_SYSTEMS
+        ]:
+            return (
+                "Safety-critical issue detected. "
+                "Vehicle should be inspected immediately."
+            )
+
+    return None
 
 def fault_lookup_node(
     state: DiagnosisState
@@ -106,8 +134,17 @@ def root_cause_node(
         ""
     )
 
-    state["safety_warning"] = parsed_response.get(
-        "safety_warning"
+    llm_warning = parsed_response.get(
+    "safety_warning"
+    )
+
+    deterministic_warning = detect_safety_issue(
+        state["retrieved_records"]
+    )
+
+    state["safety_warning"] = (
+        deterministic_warning
+        or llm_warning
     )
 
     return state
