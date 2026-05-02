@@ -3,6 +3,7 @@ import json
 from openai import OpenAI
 
 from app.core.config import settings
+from app.core.constants import SAFETY_CRITICAL_SYSTEMS
 from app.core.logger import logger
 from app.graph.prompts import (
     FIX_SEQUENCE_PROMPT,
@@ -11,9 +12,6 @@ from app.graph.prompts import (
 )
 from app.graph.state import DiagnosisState
 from app.rag.retriever import OBDRetriever
-from app.core.constants import SAFETY_CRITICAL_SYSTEMS
-from backend.app.graph import state
-
 
 
 client = OpenAI(
@@ -21,6 +19,7 @@ client = OpenAI(
 )
 
 retriever = OBDRetriever()
+
 
 def detect_safety_issue(
     retrieved_records: list[dict]
@@ -47,6 +46,34 @@ def detect_safety_issue(
             )
 
     return None
+
+
+def calculate_minimum_severity(
+    retrieved_records: list[dict]
+) -> int:
+    """
+    Enforce minimum severity based on
+    retrieved safety-critical records.
+    """
+
+    highest_severity = 1
+
+    for record in retrieved_records:
+        metadata = record.get(
+            "metadata",
+            {}
+        )
+
+        severity = metadata.get(
+            "severity",
+            1
+        )
+
+        if severity > highest_severity:
+            highest_severity = severity
+
+    return highest_severity
+
 
 def fault_lookup_node(
     state: DiagnosisState
@@ -135,7 +162,7 @@ def root_cause_node(
     )
 
     llm_warning = parsed_response.get(
-    "safety_warning"
+        "safety_warning"
     )
 
     deterministic_warning = detect_safety_issue(
@@ -250,9 +277,20 @@ def parts_estimate_node(
         {}
     )
 
-    state["severity_score"] = parsed_response.get(
+    llm_severity = parsed_response.get(
         "severity_score",
         1
+    )
+
+    minimum_safe_severity = (
+        calculate_minimum_severity(
+            state["retrieved_records"]
+        )
+    )
+
+    state["severity_score"] = max(
+        llm_severity,
+        minimum_safe_severity
     )
 
     state["summary"] = parsed_response.get(
