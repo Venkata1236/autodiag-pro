@@ -1,1 +1,189 @@
-[]
+[
+    {
+        "code": "C0031",
+        "category": "Chassis",
+        "system": "ABS",
+        "title": "Front Right Wheel Speed Sensor Circuit",
+        "description": "Fault detected in the front right wheel speed sensor circuit affecting ABS operation.",
+        "possible_causes": [
+            "Faulty wheel speed sensor",
+            "Damaged ABS wiring",
+            "Corroded connector",
+            "Debris on tone ring"
+        ],
+        "symptoms": [
+            "ABS warning light",
+            "Vehicle pulling during braking",
+            "Traction control disabled"
+        ],
+        "diagnostic_steps": [
+            "Inspect wheel speed sensor",
+            "Check ABS wiring continuity",
+            "Inspect tone ring condition"
+        ],
+        "fix_sequence": [
+            "Replace faulty wheel speed sensor",
+            "Repair damaged wiring",
+            "Clear ABS codes and retest"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "Wheel Speed Sensor",
+                "price_range_inr": "1800-4500"
+            }
+        ],
+        "severity": 4,
+        "related_codes": [
+            "C0040",
+            "C1210"
+        ]
+    },
+    {
+        "code": "C0040",
+        "category": "Chassis",
+        "system": "ABS",
+        "title": "Front Left Wheel Speed Sensor Circuit",
+        "description": "ABS module detected abnormal signal from front left wheel speed sensor.",
+        "possible_causes": [
+            "Failed wheel speed sensor",
+            "Broken ABS wiring",
+            "Damaged tone ring"
+        ],
+        "symptoms": [
+            "ABS warning light",
+            "Reduced braking stability",
+            "Traction control warning"
+        ],
+        "diagnostic_steps": [
+            "Inspect sensor voltage",
+            "Inspect ABS tone ring",
+            "Test ABS module input"
+        ],
+        "fix_sequence": [
+            "Replace wheel speed sensor",
+            "Repair ABS wiring"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "ABS Wheel Sensor",
+                "price_range_inr": "1800-4200"
+            }
+        ],
+        "severity": 4,
+        "related_codes": [
+            "C0031",
+            "C1210"
+        ]
+    },
+    {
+        "code": "C0050",
+        "category": "Chassis",
+        "system": "Steering",
+        "title": "Steering Wheel Position Sensor Malfunction",
+        "description": "Steering angle sensor data is invalid or unavailable.",
+        "possible_causes": [
+            "Faulty steering angle sensor",
+            "Calibration issue",
+            "Wiring fault"
+        ],
+        "symptoms": [
+            "Steering warning light",
+            "Unstable traction control",
+            "Electronic stability issues"
+        ],
+        "diagnostic_steps": [
+            "Inspect steering sensor data",
+            "Calibrate steering angle sensor",
+            "Inspect wiring"
+        ],
+        "fix_sequence": [
+            "Calibrate steering angle sensor",
+            "Replace faulty sensor if needed"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "Steering Angle Sensor",
+                "price_range_inr": "5000-12000"
+            }
+        ],
+        "severity": 4,
+        "related_codes": [
+            "C1210"
+        ]
+    },
+    {
+        "code": "C0110",
+        "category": "Chassis",
+        "system": "ABS",
+        "title": "ABS Pump Motor Circuit Malfunction",
+        "description": "ABS hydraulic pump motor circuit malfunction detected.",
+        "possible_causes": [
+            "Faulty ABS pump motor",
+            "Blown fuse",
+            "Low battery voltage"
+        ],
+        "symptoms": [
+            "ABS disabled",
+            "Brake warning light",
+            "Poor braking response"
+        ],
+        "diagnostic_steps": [
+            "Inspect ABS fuse",
+            "Check ABS motor voltage",
+            "Inspect ABS module"
+        ],
+        "fix_sequence": [
+            "Replace ABS fuse",
+            "Replace ABS pump motor"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "ABS Pump Motor",
+                "price_range_inr": "12000-35000"
+            }
+        ],
+        "severity": 5,
+        "related_codes": [
+            "C1210"
+        ]
+    },
+    {
+        "code": "C1210",
+        "category": "Chassis",
+        "system": "Traction Control",
+        "title": "Traction Control System Malfunction",
+        "description": "Traction control system performance degraded due to sensor or ABS issues.",
+        "possible_causes": [
+            "Wheel speed sensor failure",
+            "ABS module issue",
+            "Steering angle sensor fault"
+        ],
+        "symptoms": [
+            "Traction control disabled",
+            "Vehicle instability",
+            "ABS warning light"
+        ],
+        "diagnostic_steps": [
+            "Inspect wheel speed sensors",
+            "Check ABS module",
+            "Inspect steering angle sensor"
+        ],
+        "fix_sequence": [
+            "Repair wheel speed sensor faults",
+            "Recalibrate steering sensor",
+            "Clear traction control codes"
+        ],
+        "parts_typically_needed": [
+            {
+                "part": "ABS Control Module",
+                "price_range_inr": "15000-40000"
+            }
+        ],
+        "severity": 5,
+        "related_codes": [
+            "C0031",
+            "C0040",
+            "C0050"
+        ]
+    }
+]
