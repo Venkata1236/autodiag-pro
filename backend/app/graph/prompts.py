@@ -14,6 +14,10 @@ Your objectives:
    evidence strongly supports them.
 4. Use conservative confidence scoring.
 
+Prefer identifying one dominant root cause.
+Secondary contributing factors should be
+mentioned in reasoning, not root_cause.
+
 Confidence Rules:
 HIGH:
 Use ONLY when diagnostic evidence strongly
