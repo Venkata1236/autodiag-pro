@@ -1,13 +1,44 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="AutoDiag Pro API")
+from app.routes.diagnose import router as diagnose_router
+
+
+app = FastAPI(
+    title="AutoDiag Pro API",
+    description=(
+        "AI-powered automotive diagnostic system "
+        "using LangGraph and ChromaDB"
+    ),
+    version="1.0.0"
+)
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+app.include_router(
+    diagnose_router,
+    prefix="/api/v1",
+    tags=["Diagnosis"]
+)
 
 
 @app.get("/")
-def root():
-    return {"status": "running"}
+async def root():
+    return {
+        "message": "AutoDiag Pro API running"
+    }
 
 
 @app.get("/health")
-def health():
-    return {"healthy": True}
+async def health_check():
+    return {
+        "status": "healthy"
+    }
