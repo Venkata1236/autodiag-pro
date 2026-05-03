@@ -5,7 +5,7 @@ import FaultCodeInput from "./FaultCodeInput"
 import {
   diagnoseVehicle
 } from "../services/api"
-
+import DiagnosisResult from "./DiagnosisResult"
 
 const VEHICLE_MAKES = [
   "Maruti",
@@ -325,61 +325,10 @@ function VehicleForm() {
 
 
       {response && (
-
-        <div className="
-          rounded-xl
-          bg-slate-800
-          p-6
-          space-y-4
-        ">
-
-          <h3 className="text-xl font-bold">
-            Diagnosis Result
-          </h3>
-
-          <div>
-            <strong>
-              Root Cause:
-            </strong>
-
-            <p>
-              {response.root_cause}
-            </p>
-          </div>
-
-          <div>
-            <strong>
-              Confidence:
-            </strong>
-
-            <p>
-              {
-                response.root_cause_confidence
-              }
-            </p>
-          </div>
-
-          <div>
-            <strong>
-              Severity:
-            </strong>
-
-            <p>
-              {response.severity_score}
-            </p>
-          </div>
-
-          {response.safety_warning && (
-
-            <div className="
-              rounded-lg
-              bg-red-500/20
-              p-4
-              text-red-300
-            ">
-              {response.safety_warning}
-            </div>
-          )}
+        <DiagnosisResult
+            result={response}
+        />
+    )}
 
         </div>
       )}
