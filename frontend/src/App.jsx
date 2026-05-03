@@ -1,44 +1,44 @@
-import VehicleForm from "./components/VehicleForm"
-import VehicleHistory from "./components/VehicleHistory"
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom"
 
+import Navbar from "./components/Navbar"
 
-const MOCK_HISTORY = [
-  {
-    diagnosis_id: "1",
-    vehicle: "2019 Hyundai i20",
-    fault_codes_analyzed: [
-      "P0300",
-      "P0420"
-    ],
-    root_cause:
-      "Faulty oxygen sensor",
-    severity_score: 3,
-    estimated_cost_inr: {
-      min: 4000,
-      max: 9000
-    }
-  }
-]
+import DiagnosePage from "./pages/DiagnosePage"
+import HistoryPage from "./pages/HistoryPage"
 
 
 function App() {
 
   return (
-    <div className="
-      min-h-screen
-      space-y-10
-      bg-slate-950
-      p-10
-      text-white
-    ">
+    <BrowserRouter>
 
-      <VehicleForm />
+      <div className="
+        min-h-screen
+        bg-slate-950
+      ">
 
-      <VehicleHistory
-        history={MOCK_HISTORY}
-      />
+        <Navbar />
 
-    </div>
+        <Routes>
+
+          <Route
+            path="/"
+            element={<DiagnosePage />}
+          />
+
+          <Route
+            path="/history"
+            element={<HistoryPage />}
+          />
+
+        </Routes>
+
+      </div>
+
+    </BrowserRouter>
   )
 }
 
