@@ -14,8 +14,7 @@ function DiagnosisResult({
   const downloadReport = async () => {
 
     await exportDiagnosisReport(
-      "diagnosis-report",
-      `autodiag-${result.diagnosis_id}`
+      result
     )
   }
 
@@ -24,7 +23,6 @@ function DiagnosisResult({
     <div className="space-y-8">
 
       <div
-        id="diagnosis-report"
         className="
           space-y-6
           rounded-2xl
