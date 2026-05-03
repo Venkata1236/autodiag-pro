@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 
+
 router = APIRouter()
 
 
@@ -8,8 +9,7 @@ async def get_history():
 
     return {
         "message": (
-            "Diagnosis history endpoint "
-            "coming soon"
+            "Diagnosis history endpoint coming soon"
         ),
         "data": []
     }
