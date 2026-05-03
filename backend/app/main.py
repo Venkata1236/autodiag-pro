@@ -7,6 +7,9 @@ from app.routes.diagnose import (
 from app.routes.health import (
     router as health_router
 )
+from app.routes.history import (
+    router as history_router
+)
 
 
 app = FastAPI(
@@ -34,6 +37,10 @@ app.include_router(
     prefix="/api"
 )
 
+app.include_router(
+    history_router,
+    prefix="/api"
+)
 
 @app.get("/")
 async def root():
