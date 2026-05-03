@@ -13,6 +13,9 @@ from app.routes.history import (
     router as history_router
 )
 
+from app.routes.chat import (
+    router as chat_router
+)
 
 app = FastAPI(
     title="AutoDiag Pro API",
@@ -44,6 +47,10 @@ app.include_router(
     prefix="/api"
 )
 
+app.include_router(
+    chat_router,
+    prefix="/api"
+)
 
 @app.get("/")
 async def root():
