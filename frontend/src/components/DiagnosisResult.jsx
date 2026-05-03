@@ -1,5 +1,6 @@
 import SeverityGauge from "./SeverityGauge"
 
+
 function DiagnosisResult({
   result
 }) {
@@ -94,20 +95,11 @@ function DiagnosisResult({
           p-6
         ">
 
-          <p className="
-            text-sm
-            text-slate-400
-          ">
-            Severity Score
-          </p>
-
-          <p className="
-            mt-2
-            text-xl
-            font-bold
-          ">
-            {result.severity_score} / 5
-          </p>
+          <SeverityGauge
+            severity={
+              result.severity_score
+            }
+          />
 
         </div>
 
