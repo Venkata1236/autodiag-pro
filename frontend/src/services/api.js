@@ -8,17 +8,9 @@ const api = axios.create({
 export const diagnoseVehicle =
   async (payload) => {
 
-    const backendPayload = {
-      vehicle: `${payload.vehicle_year} ${payload.vehicle_make} ${payload.vehicle_model}`,
-      fault_codes:
-        payload.fault_codes,
-      symptoms:
-        payload.symptoms
-    }
-
     const response = await api.post(
       "/diagnose",
-      backendPayload
+      payload
     )
 
     return response.data
