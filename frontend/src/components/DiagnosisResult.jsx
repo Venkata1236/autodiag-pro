@@ -1,3 +1,5 @@
+import SeverityGauge from "./SeverityGauge"
+
 function DiagnosisResult({
   result
 }) {
