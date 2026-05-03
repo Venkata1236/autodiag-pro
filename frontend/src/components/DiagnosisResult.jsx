@@ -1,4 +1,5 @@
 import SeverityGauge from "./SeverityGauge"
+import PartsListTable from "./PartsListTable"
 
 
 function DiagnosisResult({
@@ -165,27 +166,43 @@ function DiagnosisResult({
         p-6
       ">
 
-        <h4 className="
-          text-xl
-          font-bold
-        ">
-          Estimated Cost
-        </h4>
-
-        <p className="
-          mt-4
-          text-2xl
-          font-bold
-          text-green-400
+        <div className="
+          flex
+          items-center
+          justify-between
         ">
 
-          ₹
-          {result.estimated_cost_inr.min}
-          {" - "}
-          ₹
-          {result.estimated_cost_inr.max}
+          <h4 className="
+            text-xl
+            font-bold
+          ">
+            Parts & Cost Estimate
+          </h4>
 
-        </p>
+          <p className="
+            text-2xl
+            font-bold
+            text-green-400
+          ">
+
+            ₹
+            {result.estimated_cost_inr.min}
+            {" - "}
+            ₹
+            {result.estimated_cost_inr.max}
+
+          </p>
+
+        </div>
+
+
+        <div className="mt-6">
+
+          <PartsListTable
+            parts={result.parts_list}
+          />
+
+        </div>
 
       </div>
 
