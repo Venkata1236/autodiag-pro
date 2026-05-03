@@ -28,4 +28,16 @@ export const fetchDiagnosisHistory =
   }
 
 
+export const askMechanicAssistant =
+  async (payload) => {
+
+    const response = await api.post(
+      "/chat",
+      payload
+    )
+
+    return response.data
+  }
+
+
 export default api
