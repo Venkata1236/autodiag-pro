@@ -4,9 +4,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.routes.diagnose import (
     router as diagnose_router
 )
+
 from app.routes.health import (
     router as health_router
 )
+
 from app.routes.history import (
     router as history_router
 )
@@ -42,8 +44,10 @@ app.include_router(
     prefix="/api"
 )
 
+
 @app.get("/")
 async def root():
+
     return {
         "message": "AutoDiag Pro API running"
     }
