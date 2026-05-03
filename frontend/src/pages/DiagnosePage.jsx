@@ -1,7 +1,14 @@
+import { useState } from "react"
+
 import VehicleForm from "../components/VehicleForm"
+import DiagnosisResult from "../components/DiagnosisResult"
 
 
 function DiagnosePage() {
+
+  const [result, setResult] =
+    useState(null)
+
 
   return (
     <div className="
@@ -11,7 +18,16 @@ function DiagnosePage() {
       text-white
     ">
 
-      <VehicleForm />
+      <VehicleForm
+        setResult={setResult}
+      />
+
+      {result && (
+
+        <DiagnosisResult
+          result={result}
+        />
+      )}
 
     </div>
   )
