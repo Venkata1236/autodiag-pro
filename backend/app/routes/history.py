@@ -22,38 +22,52 @@ async def get_history(
     db: AsyncSession = Depends(get_db)
 ):
 
-    diagnoses = await get_all_diagnoses(
-        db
-    )
+    try:
 
-    history = []
+        diagnoses = (
+            await get_all_diagnoses(db)
+        )
 
-    for item in diagnoses:
+        history = []
 
-        history.append({
-            "diagnosis_id": item.id,
+        for item in diagnoses:
 
-            "vehicle": (
-                f"{item.vehicle_year} "
-                f"{item.vehicle_make} "
-                f"{item.vehicle_model}"
-            ),
+            history.append({
+                "diagnosis_id": item.id,
 
-            "fault_codes_analyzed":
-                item.fault_codes,
+                "vehicle": (
+                    f"{item.vehicle_year} "
+                    f"{item.vehicle_make} "
+                    f"{item.vehicle_model}"
+                ),
 
-            "root_cause":
-                item.root_cause,
+                "fault_codes_analyzed":
+                    item.fault_codes,
 
-            "severity_score":
-                item.severity_score,
+                "root_cause":
+                    item.root_cause,
 
-            "estimated_cost_inr":
-                item.estimated_cost
-        })
+                "severity_score":
+                    item.severity_score,
 
-    return {
-        "message":
-            "Diagnosis history retrieved",
-        "data": history
-    }
+                "estimated_cost_inr":
+                    item.estimated_cost
+            })
+
+        return {
+            "message":
+                "Diagnosis history retrieved",
+
+            "data": history
+        }
+
+    except Exception as error:
+
+        print(error)
+
+        return {
+            "message":
+                "History temporarily unavailable",
+
+            "data": []
+        }
