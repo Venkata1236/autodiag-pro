@@ -29,15 +29,21 @@ function MechanicChat({
 
       setLoading(true)
 
-      const userMessage = {
-        role: "user",
-        content: question
-      }
+      const userQuestion = question
 
       setMessages(prev => [
         ...prev,
-        userMessage
+        {
+          role: "user",
+          content: userQuestion
+        },
+        {
+          role: "assistant",
+          content: ""
+        }
       ])
+
+      setQuestion("")
 
       const diagnosisSummary = `
         Root Cause:
@@ -47,24 +53,31 @@ function MechanicChat({
         ${diagnosis.summary}
       `
 
-      const response =
-        await askMechanicAssistant({
-          question,
+      await askMechanicAssistant(
+        {
+          question: userQuestion,
+
           diagnosis_summary:
             diagnosisSummary
-        })
+        },
 
-      const assistantMessage = {
-        role: "assistant",
-        content: response.answer
-      }
+        (streamedText) => {
 
-      setMessages(prev => [
-        ...prev,
-        assistantMessage
-      ])
+          setMessages(prev => {
 
-      setQuestion("")
+            const updated = [...prev]
+
+            updated[
+              updated.length - 1
+            ] = {
+              role: "assistant",
+              content: streamedText
+            }
+
+            return updated
+          })
+        }
+      )
 
     } catch (error) {
 
