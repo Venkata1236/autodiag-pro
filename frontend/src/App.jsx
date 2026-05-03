@@ -1,21 +1,21 @@
-import { useState } from "react"
-import FaultCodeInput from "./components/FaultCodeInput"
+import VehicleForm from "./components/VehicleForm"
 
 
 function App() {
 
-  const [codes, setCodes] = useState([])
-
   return (
-    <div className="p-10">
+    <div className="
+      min-h-screen
+      bg-slate-950
+      p-10
+      text-white
+    ">
 
-      <FaultCodeInput
-        codes={codes}
-        setCodes={setCodes}
-      />
+      <VehicleForm />
 
     </div>
   )
 }
+
 
 export default App
