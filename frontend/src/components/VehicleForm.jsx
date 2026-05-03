@@ -1,32 +1,27 @@
 import { useState } from "react"
 
-import FaultCodeInput from "./FaultCodeInput"
-import DiagnosisResult from "./DiagnosisResult"
-
 import {
   diagnoseVehicle
 } from "../services/api"
 
 
-const VEHICLE_MAKES = [
-  "Maruti",
-  "Hyundai",
-  "Honda",
-  "Toyota",
-  "Tata",
-  "Kia",
-  "Mahindra",
-  "Ford",
-  "Volkswagen",
-  "Skoda",
-  "MG",
-  "Other"
+const COMMON_CODES = [
+  "P0300",
+  "P0420",
+  "P0171",
+  "P0442"
 ]
 
 
-function VehicleForm() {
+function VehicleForm({
+  setResult
+}) {
 
-  const [codes, setCodes] = useState([])
+  const [faultInput, setFaultInput] =
+    useState("")
+
+  const [faultCodes, setFaultCodes] =
+    useState([])
 
   const [vehicleMake, setVehicleMake] =
     useState("Hyundai")
@@ -35,22 +30,62 @@ function VehicleForm() {
     useState("i20")
 
   const [vehicleYear, setVehicleYear] =
-    useState(2019)
+    useState("2019")
 
   const [mileageKm, setMileageKm] =
-    useState(45000)
+    useState("45000")
 
   const [symptoms, setSymptoms] =
-    useState("")
+    useState(
+      "rough idle, check engine light, poor acceleration"
+    )
 
   const [loading, setLoading] =
     useState(false)
 
-  const [response, setResponse] =
-    useState(null)
-
   const [error, setError] =
     useState("")
+
+
+  const addFaultCode = (code) => {
+
+    const formattedCode =
+      code.trim().toUpperCase()
+
+    if (
+      formattedCode &&
+      !faultCodes.includes(formattedCode)
+    ) {
+
+      setFaultCodes(prev => [
+        ...prev,
+        formattedCode
+      ])
+    }
+
+    setFaultInput("")
+  }
+
+
+  const removeFaultCode = (code) => {
+
+    setFaultCodes(prev =>
+      prev.filter(
+        item => item !== code
+      )
+    )
+  }
+
+
+  const handleKeyDown = (event) => {
+
+    if (event.key === "Enter") {
+
+      event.preventDefault()
+
+      addFaultCode(faultInput)
+    }
+  }
 
 
   const handleSubmit = async (
@@ -59,7 +94,9 @@ function VehicleForm() {
 
     event.preventDefault()
 
-    if (codes.length === 0) {
+    setError("")
+
+    if (!faultCodes.length) {
 
       setError(
         "Add at least one fault code"
@@ -72,29 +109,36 @@ function VehicleForm() {
 
       setLoading(true)
 
-      setError("")
-
       const payload = {
-        fault_codes: codes,
+        fault_codes: faultCodes,
+
         symptoms,
+
         vehicle_make: vehicleMake,
+
         vehicle_model: vehicleModel,
-        vehicle_year: Number(vehicleYear),
-        mileage_km: Number(mileageKm)
+
+        vehicle_year:
+          parseInt(vehicleYear),
+
+        mileage_km:
+          parseInt(mileageKm)
       }
 
-      const result =
-        await diagnoseVehicle(payload)
+      const response =
+        await diagnoseVehicle(
+          payload
+        )
 
-      setResponse(result)
+      setResult(response)
 
-    } catch (err) {
+    } catch (error) {
+
+      console.error(error)
 
       setError(
         "Diagnosis request failed"
       )
-
-      console.error(err)
 
     } finally {
 
@@ -104,35 +148,162 @@ function VehicleForm() {
 
 
   return (
-    <div className="space-y-8">
+    <div className="
+      rounded-2xl
+      bg-slate-900
+      p-8
+    ">
+
+      <h2 className="
+        mb-8
+        text-4xl
+        font-bold
+      ">
+        Diagnose Vehicle
+      </h2>
+
 
       <form
         onSubmit={handleSubmit}
-        className="
-          max-w-4xl
-          space-y-6
-          rounded-2xl
-          bg-slate-900
-          p-8
-        "
+        className="space-y-8"
       >
 
-        <h2 className="text-2xl font-bold">
-          Diagnose Vehicle
-        </h2>
+        <div>
+
+          <label className="
+            mb-3
+            block
+            text-lg
+            font-medium
+          ">
+            Fault Codes
+          </label>
+
+          <input
+            type="text"
+            value={faultInput}
+            onChange={(event) =>
+              setFaultInput(
+                event.target.value
+              )
+            }
+            onKeyDown={handleKeyDown}
+            placeholder="
+              Enter DTC code
+              (Example: P0300)
+            "
+            className="
+              w-full
+              rounded-xl
+              border
+              border-slate-700
+              bg-slate-950
+              px-5
+              py-4
+              outline-none
+            "
+          />
+
+        </div>
 
 
-        <FaultCodeInput
-          codes={codes}
-          setCodes={setCodes}
-        />
+        <div className="
+          flex
+          flex-wrap
+          gap-3
+        ">
+
+          {faultCodes.map((code) => (
+
+            <div
+              key={code}
+              className="
+                flex
+                items-center
+                gap-2
+                rounded-full
+                bg-blue-600
+                px-5
+                py-3
+              "
+            >
+
+              <span>
+                {code}
+              </span>
+
+              <button
+                type="button"
+                onClick={() =>
+                  removeFaultCode(code)
+                }
+              >
+                ×
+              </button>
+
+            </div>
+          ))}
+
+        </div>
 
 
-        <div className="grid grid-cols-2 gap-4">
+        <div>
+
+          <p className="
+            mb-4
+            text-lg
+            text-slate-400
+          ">
+            Common Codes
+          </p>
+
+          <div className="
+            flex
+            flex-wrap
+            gap-3
+          ">
+
+            {COMMON_CODES.map((code) => (
+
+              <button
+                key={code}
+                type="button"
+                onClick={() =>
+                  addFaultCode(code)
+                }
+                className="
+                  rounded-xl
+                  border
+                  border-slate-700
+                  bg-slate-800
+                  px-5
+                  py-3
+                  hover:bg-slate-700
+                "
+              >
+                {code}
+              </button>
+            ))}
+
+          </div>
+
+        </div>
+
+
+        <div className="
+          grid
+          grid-cols-2
+          gap-6
+        ">
 
           <div>
 
-            <label className="mb-2 block text-sm">
+            <label className="
+              mb-3
+              block
+              text-lg
+              font-medium
+            ">
               Vehicle Make
             </label>
 
@@ -145,24 +316,31 @@ function VehicleForm() {
               }
               className="
                 w-full
-                rounded-lg
+                rounded-xl
                 border
                 border-slate-700
                 bg-slate-800
-                px-4
-                py-3
+                px-5
+                py-4
+                outline-none
               "
             >
 
-              {VEHICLE_MAKES.map((make) => (
+              <option>
+                Hyundai
+              </option>
 
-                <option
-                  key={make}
-                  value={make}
-                >
-                  {make}
-                </option>
-              ))}
+              <option>
+                Honda
+              </option>
+
+              <option>
+                Toyota
+              </option>
+
+              <option>
+                Ford
+              </option>
 
             </select>
 
@@ -171,7 +349,12 @@ function VehicleForm() {
 
           <div>
 
-            <label className="mb-2 block text-sm">
+            <label className="
+              mb-3
+              block
+              text-lg
+              font-medium
+            ">
               Vehicle Model
             </label>
 
@@ -185,12 +368,13 @@ function VehicleForm() {
               }
               className="
                 w-full
-                rounded-lg
+                rounded-xl
                 border
                 border-slate-700
                 bg-slate-800
-                px-4
-                py-3
+                px-5
+                py-4
+                outline-none
               "
             />
 
@@ -199,11 +383,20 @@ function VehicleForm() {
         </div>
 
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="
+          grid
+          grid-cols-2
+          gap-6
+        ">
 
           <div>
 
-            <label className="mb-2 block text-sm">
+            <label className="
+              mb-3
+              block
+              text-lg
+              font-medium
+            ">
               Vehicle Year
             </label>
 
@@ -217,12 +410,13 @@ function VehicleForm() {
               }
               className="
                 w-full
-                rounded-lg
+                rounded-xl
                 border
                 border-slate-700
                 bg-slate-800
-                px-4
-                py-3
+                px-5
+                py-4
+                outline-none
               "
             />
 
@@ -231,7 +425,12 @@ function VehicleForm() {
 
           <div>
 
-            <label className="mb-2 block text-sm">
+            <label className="
+              mb-3
+              block
+              text-lg
+              font-medium
+            ">
               Mileage (km)
             </label>
 
@@ -245,12 +444,13 @@ function VehicleForm() {
               }
               className="
                 w-full
-                rounded-lg
+                rounded-xl
                 border
                 border-slate-700
                 bg-slate-800
-                px-4
-                py-3
+                px-5
+                py-4
+                outline-none
               "
             />
 
@@ -261,17 +461,17 @@ function VehicleForm() {
 
         <div>
 
-          <label className="mb-2 block text-sm">
+          <label className="
+            mb-3
+            block
+            text-lg
+            font-medium
+          ">
             Symptoms
           </label>
 
           <textarea
-            rows={5}
-            placeholder="
-              rough idle,
-              check engine light,
-              poor acceleration
-            "
+            rows="5"
             value={symptoms}
             onChange={(event) =>
               setSymptoms(
@@ -280,12 +480,13 @@ function VehicleForm() {
             }
             className="
               w-full
-              rounded-lg
+              rounded-xl
               border
               border-slate-700
               bg-slate-800
-              px-4
-              py-3
+              px-5
+              py-4
+              outline-none
             "
           />
 
@@ -295,12 +496,14 @@ function VehicleForm() {
         {error && (
 
           <div className="
-            rounded-lg
+            rounded-xl
             bg-red-500/20
             p-4
             text-red-300
           ">
+
             {error}
+
           </div>
         )}
 
@@ -311,8 +514,9 @@ function VehicleForm() {
           className="
             rounded-xl
             bg-blue-600
-            px-6
-            py-3
+            px-8
+            py-4
+            text-lg
             font-semibold
             hover:bg-blue-500
             disabled:opacity-50
@@ -327,13 +531,6 @@ function VehicleForm() {
         </button>
 
       </form>
-
-
-      {response && (
-        <DiagnosisResult
-          result={response}
-        />
-      )}
 
     </div>
   )
