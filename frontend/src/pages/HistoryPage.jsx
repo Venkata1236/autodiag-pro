@@ -1,26 +1,93 @@
+import { useEffect, useState } from "react"
+
 import VehicleHistory from "../components/VehicleHistory"
 
-
-const MOCK_HISTORY = [
-  {
-    diagnosis_id: "1",
-    vehicle: "2019 Hyundai i20",
-    fault_codes_analyzed: [
-      "P0300",
-      "P0420"
-    ],
-    root_cause:
-      "Faulty oxygen sensor",
-    severity_score: 3,
-    estimated_cost_inr: {
-      min: 4000,
-      max: 9000
-    }
-  }
-]
+import {
+  fetchDiagnosisHistory
+} from "../services/api"
 
 
 function HistoryPage() {
+
+  const [history, setHistory] =
+    useState([])
+
+  const [loading, setLoading] =
+    useState(true)
+
+  const [error, setError] =
+    useState("")
+
+
+  useEffect(() => {
+
+    const loadHistory = async () => {
+
+      try {
+
+        const response =
+          await fetchDiagnosisHistory()
+
+        setHistory(
+          response.data || []
+        )
+
+      } catch (err) {
+
+        console.error(err)
+
+        setError(
+          "Failed to load history"
+        )
+
+      } finally {
+
+        setLoading(false)
+      }
+    }
+
+    loadHistory()
+
+  }, [])
+
+
+  if (loading) {
+
+    return (
+      <div className="
+        flex
+        min-h-screen
+        items-center
+        justify-center
+        bg-slate-950
+        text-white
+      ">
+
+        Loading history...
+
+      </div>
+    )
+  }
+
+
+  if (error) {
+
+    return (
+      <div className="
+        flex
+        min-h-screen
+        items-center
+        justify-center
+        bg-slate-950
+        text-red-400
+      ">
+
+        {error}
+
+      </div>
+    )
+  }
+
 
   return (
     <div className="
@@ -31,7 +98,7 @@ function HistoryPage() {
     ">
 
       <VehicleHistory
-        history={MOCK_HISTORY}
+        history={history}
       />
 
     </div>
