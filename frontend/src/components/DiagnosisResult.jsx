@@ -1,35 +1,75 @@
 import SeverityGauge from "./SeverityGauge"
 import PartsListTable from "./PartsListTable"
 
+import {
+  exportDiagnosisReport
+} from "../utils/exportReport"
+
 
 function DiagnosisResult({
   result
 }) {
 
+  const downloadReport = async () => {
+
+    await exportDiagnosisReport(
+      "diagnosis-report",
+      `autodiag-${result.diagnosis_id}`
+    )
+  }
+
+
   return (
-    <div className="
-      mt-8
-      space-y-6
-      rounded-2xl
-      bg-slate-900
-      p-8
-    ">
+    <div
+      id="diagnosis-report"
+      className="
+        mt-8
+        space-y-6
+        rounded-2xl
+        bg-slate-900
+        p-8
+      "
+    >
 
-      <div>
+      <div className="
+        flex
+        items-start
+        justify-between
+        gap-6
+      ">
 
-        <h2 className="
-          text-3xl
-          font-bold
-        ">
-          Diagnosis Result
-        </h2>
+        <div>
 
-        <p className="
-          mt-2
-          text-slate-400
-        ">
-          {result.vehicle}
-        </p>
+          <h2 className="
+            text-3xl
+            font-bold
+          ">
+            Diagnosis Result
+          </h2>
+
+          <p className="
+            mt-2
+            text-slate-400
+          ">
+            {result.vehicle}
+          </p>
+
+        </div>
+
+
+        <button
+          onClick={downloadReport}
+          className="
+            rounded-xl
+            bg-green-600
+            px-5
+            py-3
+            font-semibold
+            hover:bg-green-500
+          "
+        >
+          Download Report
+        </button>
 
       </div>
 
