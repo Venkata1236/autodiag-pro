@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from fastapi.responses import StreamingResponse
 
 from openai import OpenAI
 
@@ -36,27 +37,38 @@ async def mechanic_chat(
     {request.diagnosis_summary}
     """
 
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {
-                "role": "system",
-                "content": system_prompt
-            },
-            {
-                "role": "user",
-                "content": request.question
-            }
-        ]
-    )
 
-    answer = (
-        response
-        .choices[0]
-        .message
-        .content
-    )
+    async def stream_response():
 
-    return {
-        "answer": answer
-    }
+        stream = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {
+                    "role": "system",
+                    "content": system_prompt
+                },
+                {
+                    "role": "user",
+                    "content": request.question
+                }
+            ],
+            stream=True
+        )
+
+        for chunk in stream:
+
+            content = (
+                chunk
+                .choices[0]
+                .delta
+                .content
+            )
+
+            if content:
+                yield content
+
+
+    return StreamingResponse(
+        stream_response(),
+        media_type="text/plain"
+    )
